@@ -20,7 +20,7 @@ class Search_detail(models.Model):
 
 class search_result(models.Model):
     title=models.CharField(max_length=100)
-    descripton=models.CharField(max_length=200)
+    description=models.CharField(max_length=200)
     link=models.URLField()
     details=models.ManyToManyField(Search_detail)
 

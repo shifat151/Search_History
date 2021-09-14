@@ -1,0 +1,16 @@
+{% for result in results %}
+<div>
+    <h3><a href="{{ result.link }}">{{ result.title }}</a> </h3>
+    <p>{{ result.description }}</p>
+    <small style="display: inline;">Searched by-</small>
+    {% for details in result.details.all %}
+    <span class="badge badge-secondary">{{ details.user.username }}</span>
+    {% endfor %}
+    <small style="display: inline;">| Keywords-</small>
+    {% for details in result.details.all %}
+    <span class="badge badge-secondary">{{ details.keyword }}</span>
+    {% endfor %}
+</div>
+
+<hr>
+{% endfor %}
