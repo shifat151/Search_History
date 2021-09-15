@@ -10,9 +10,6 @@ class Search_detail(models.Model):
     schedule=models.DateTimeField(auto_now_add=True, auto_now=False)
     user=models.ForeignKey(User, on_delete=models.CASCADE)
 
-    @property
-    def get_username(self):
-        return self.username
     def __str__(self):
         return "{} - ({})".format(self.keyword,self.user.username)
 

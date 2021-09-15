@@ -1,16 +1,21 @@
+{% load static %}
+{% load humanize %}
 {% for result in results %}
 <div>
-    <h3><a href="{{ result.link }}">{{ result.title }}</a> </h3>
+    <h3><a target="blank" href="{{ result.link }}">{{ result.title }}</a> </h3>
     <p>{{ result.description }}</p>
     <small style="display: inline;">Searched by-</small>
     {% for details in result.details.all %}
-    <span class="badge badge-secondary">{{ details.user.username }}</span>
+    <span class="badge badge-secondary">{{ details.user.username }} on {{details.schedule}}</span>
     {% endfor %}
     <small style="display: inline;">| Keywords-</small>
     {% for details in result.details.all %}
-    <span class="badge badge-secondary">{{ details.keyword }}</span>
+    {% ifchanged details.keyword %} <span class="badge badge-secondary">{{ details.keyword }}</span> {% endifchanged %}
+
     {% endfor %}
 </div>
 
 <hr>
+{% empty %}
+<h3>Sorry! No results available</h3>
 {% endfor %}
