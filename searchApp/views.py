@@ -6,7 +6,6 @@ from django.http import JsonResponse,HttpResponse
 from django.utils import timezone
 from datetime import timedelta
 import datetime
-from dateutil import parser
 
 
 from django.db.models import Count
@@ -31,7 +30,7 @@ def filtersResult(request):
     keywords=request.GET.getlist('keyword[]')
     users=request.GET.getlist('user[]')
     time_range=request.GET.getlist('time-range[]')
-    
+
     if 'startdate' in dict(request.GET):
         start_date=request.GET['startdate']
     if 'enddate' in dict(request.GET):
