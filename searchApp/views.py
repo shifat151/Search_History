@@ -19,7 +19,6 @@ def home(request):
     context['keywords']=keywords
     context['users']=users
     context['results']=results
-    # print(results.__dict__)
     return render(request, 'searchApp/home.html', context)
 
 
@@ -58,7 +57,6 @@ def filtersResult(request):
         except:
             pass
     if len(end_date)>0:
-    
         try:
             py_end_date=datetime.datetime.fromtimestamp(int(end_date))
             all_results=all_results.filter(details__schedule__date__lte=py_end_date ).distinct()
@@ -68,14 +66,3 @@ def filtersResult(request):
     context['results']=all_results
     search_html=render_to_string('searchResults.html',context)
     return JsonResponse({'results':search_html})
-
-        
-
-    
-
-    # if(len(keywords)>0):
-        
-
-
-    # print(keywords)
-    # return(request)

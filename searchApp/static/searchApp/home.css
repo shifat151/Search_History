@@ -1,0 +1,31 @@
+#main-row{
+    min-height: 100vh;
+
+}
+
+.result-col{
+    background-color: aliceblue;
+}
+
+.filter-col{
+    background-color: darkgray;
+
+}
+
+#search-reults{
+    min-height: inherit;
+    width: inherit;
+
+}
+.loading-div {
+    display: none;
+    z-index: 1000;
+    min-height: inherit;
+    width: inherit;
+    background: aliceblue url("/static/loader1.gif") 50% 50% no-repeat;
+}
+
+
+.search-tags{
+    display: inline;
+}

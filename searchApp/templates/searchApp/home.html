@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block css %}{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'searchApp/home.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<div class="row py-2">
-    <div class="col-sm-3">
+<div class="row" id="main-row">
+    <div class="col-sm-3 filter-col py-3">
         <b>All keywords:</b>
         {% for keyword in keywords %}
         <div class="form-check">
@@ -22,16 +24,15 @@
         <hr>
         <b>All Users:</b>
         {% for user in users %}
-        {% if user.is_superuser %}
+        {% if not user.is_superuser and not user.is_staff  %}
 
-        {% else %}
-        <div class="form-check">
+            <div class="form-check">
 
-            <input class="form-check-input" type="checkbox" data-filter="user" value="{{user.id}}">
-            <label class="form-check-label">
-                {{ user.username }}
-            </label>
-        </div>
+                <input class="form-check-input" type="checkbox" data-filter="user" value="{{user.id}}">
+                <label class="form-check-label">
+                    {{ user.username }}
+                </label>
+            </div>
         {% endif %}
         {% endfor %}
         <hr>
@@ -72,7 +73,9 @@
 
 
     </div>
-    <div class="col-sm-9">
+
+    <div class="col-sm-9 result-col py-3">
+
     <div id="search-reults">
         {% include "searchResults.html" %}
     </div>
@@ -80,7 +83,7 @@
     </div>
 </div>
 
-
+<div class="loading-div"></div>
 {% endblock %}
 
 {% block javascript %}

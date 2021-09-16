@@ -8,7 +8,7 @@
     {% for details in result.details.all %}
     <span class="badge badge-secondary">{{ details.user.username }} on {{details.schedule}}</span>
     {% endfor %}
-    <small style="display: inline;">| Keywords-</small>
+    <small class="search-tags">| Keywords-</small>
     {% for details in result.details.all %}
     {% ifchanged details.keyword %} <span class="badge badge-secondary">{{ details.keyword }}</span> {% endifchanged %}
 
@@ -17,5 +17,8 @@
 
 <hr>
 {% empty %}
-<h3>Sorry! No results available</h3>
+<p>
+    Sorry! No search result was found!
+</p>
+
 {% endfor %}
