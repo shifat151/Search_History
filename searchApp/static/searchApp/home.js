@@ -6,13 +6,23 @@ $(function () {
         yearRange: "2000:2040",
         dateFormat: "yy-mm-dd",
         defaultDate: '',
-        showAnim: "slideDown"
-        // You can put more options here.
+        showAnim: "slideDown",
 
     });
 
 
+    $("#clear_date").click(function () {
+        console.log('clicked')
+        $(".datepicker").datepicker("setDate", null);
+        $('#startdate').datepicker("option", "maxDate", null);
+        $('#enddate').datepicker("option", "minDate", null);
+        $(".datepicker").trigger("change")
+    });
+
+
+
     $(".form-check-input, .datepicker").on("change", function () {
+
 
         $("#search-reults").html($loader.show());
         var filterObj = {}
@@ -23,16 +33,20 @@ $(function () {
             });
         });
 
+
+
         if ($('#startdate').datepicker('getDate') !== null) {
             var startdate = $('#startdate').datepicker('getDate');
+            $('#enddate').datepicker("option", "minDate", startdate);
             filterObj["startdate"] = startdate.getTime() / 1000;
         }
         if ($('#enddate').datepicker('getDate') !== null) {
             var enddate = $('#enddate').datepicker('getDate');
+            $('#startdate').datepicker("option", "maxDate", enddate);
             filterObj["enddate"] = enddate.getTime() / 1000;
         }
 
-        // console.log(_filterObj)
+
 
         $.ajax({
             url: 'search-result/filters/',
